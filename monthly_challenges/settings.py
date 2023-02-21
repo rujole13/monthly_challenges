@@ -19,8 +19,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
+from decouple import config
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-zo*k0$mh=gt2yfxg_s2d#=9bz7s&ijg%fvd_u@=h_x6%t2oz)="
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "challenges",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -54,7 +56,10 @@ ROOT_URLCONF = "monthly_challenges.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            # BASE_DIR / "challenges" / "templates"
+            BASE_DIR / "templates"
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
